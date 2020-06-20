@@ -84,8 +84,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Popup</button>
-                    <button type="submit" class="btn btn-default">Thanh toán Redirect</button>
+                    <button type="submit" class="btn btn-primary">Thanh toán</button>
 
                 </form>
             </div>
@@ -97,33 +96,6 @@
             </footer>
         </div>
         <link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
-        <script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
-        <script type="text/javascript">
-            $("#btnPopup").click(function () {
-                var postData = $("#create_form").serialize();
-                var submitUrl = $("#create_form").attr("action");
-                $.ajax({
-                    type: "POST",
-                    url: submitUrl,
-                    data: postData,
-                    dataType: 'JSON',
-                    success: function (x) {
-                        if (x.code === '00') {
-                            if (window.vnpay) {
-                                vnpay.open({width: 768, height: 600, url: x.data});
-                            } else {
-                                location.href = x.data;
-                            }
-                            return false;
-                        } else {
-                            alert(x.Message);
-                        }
-                    }
-                });
-                return false;
-            });
-        </script>
-
 
     </body>
 </html>
